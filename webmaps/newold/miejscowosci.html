@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Miejscowości Nowe-Stare, Duże, Wielkie-Małe</title>
+	
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+	<!-- CHART.JS -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<!-- LEAFLET SIDEBAR PLUGIN -->
+	<script src="plugins/leaflet-sidebar.js"></script>
+	<link rel="stylesheet" href="plugins/leaflet-sidebar.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<!-- DATA -->
+	<script src="data/msc_new_old.js"></script>
+	<script src="data/net_new_old.js"></script>
+	<script src="data/msc_bl_little.js"></script>
+	<script src="data/net_bl_little.js"></script>
+	<script src="data/wojewodztwa.js"></script>
+	<script src="data/polska.js"></script>
+	
+	<style>
+		html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+			font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
+		
+		h1 {
+			font-weight: bold;
+		}
+	</style>
+	
+</head>
+<body>
+	<div id="map"></div>
+	
+	<div id="sidebar" class="sidebar collapsed">
+		<div class="sidebar-tabs">
+			<ul role="tablist"> <!-- top aligned tabs -->
+				<li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+				<li><a href="#statGeneral" role="tab"><i class="fa fa-bar-chart-o"></i></a></li>
+				<li><a href="#statNewOld" role="tab"><i class="fa fa-bar-chart-o" style="color:darkorange"></i></a></li>
+				<li><a href="#statBigLittle" role="tab"><i class="fa fa-bar-chart-o" style="color:darkorchid"></i></a></li>
+			</ul>
+			<ul role="tablist"> <!-- bottom aligned tabs -->
+				<li><a href="#contact" role="tab"><i class="fa fa-envelope"></i></a></li>
+			</ul>
+		</div>
+		<div class="sidebar-content">
+			<div class="sidebar-pane" id="home">
+				<h1 class="sidebar-header">
+					INFORMACJE OGÓLNE
+					<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+				</h1>
+				<br>
+				<p class="notka">Mapa przedstawia rozmieszczenie i
+				statystyki dotyczące miejscowości w Polsce, które posiadają w swojej nazwie słowo Nowy/a/e/, Stary/a/e, Duży/a/e bądź Wielki/a/e, Mały/a/e.</p>
+				<p>Siatka stworzona jest z sześciokątów w odstępie 20 km (wysokość oczka siatki).
+				<p>Szczegółowe statystki, prezentujące liczby miejscowości w formie wykresów słupkowych znajdują się w kolejnych zakładkach panelu.</p>
+				<p>Dane pochodzą z Państwowego Rejestru Nazw Geograficznych, udostępnianego przez GUGiK.</p>
+				<p>Analizy wykonano w programie <a href="https://qgis.org">QGIS</a>.</p>
+				<p>Legenda:</p>
+				<img src="img/legenda.png">
+			</div>
+			
+			<div class="sidebar-pane" id="statGeneral">
+				<h1 class="sidebar-header">
+					STATYSTYKI OGÓLNE
+					<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+				</h1>
+				<br>
+				<canvas id="chartGeneral"></canvas>
+				<script src="charts/chartGeneral.js"></script>
+			</div>
+			
+			<div class="sidebar-pane" id="statNewOld">
+				<h1 class="sidebar-header">
+					STATYSTYKI "NOWE-STARE"
+					<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+				</h1>
+				<br>
+				<canvas id="chartNew"></canvas>
+				<script src="charts/chartNew.js"></script>
+				<br>
+				<canvas id="chartOld"></canvas>
+				<script src="charts/chartOld.js"></script>				
+			</div>
+			
+			<div class="sidebar-pane" id="statBigLittle">
+				<h1 class="sidebar-header">
+					STATYSTYKI "DUŻE I WIELKIE - MAŁE"
+					<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+				</h1>
+				<br>
+				<canvas id="chartBigLarge"></canvas>
+				<script src="charts/chartBigLarge.js"></script>
+				<br>
+				<canvas id="chartSmall"></canvas>
+				<script src="charts/chartSmall.js"></script>
+			</div>
+			
+			<div class="sidebar-pane" id="contact">
+			<h1 class="sidebar-header">
+					KONTAKT
+					<span class="sidebar-close"><i class="fa fa-caret-right"></i></span>
+			</h1>
+			<br>
+			<p>Kontakt: marylaGISdev gmail com</p>
+			</div>
+			
+		</div>
+	</div>
+
+</div>
+
+<script>
+// BASEMAPS
+	var cartoLight = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	});
+	
+	var OSM = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	});
+	
+	var map = L.map('map', {
+		center:[52.06930, 19.78031],
+		zoom:6,
+		minZoom: 5,
+		maxZoom: 13,
+		layers: [cartoLight, OSM],
+		zoomControl: false,
+	});
+	
+
+// FEATURE FUNCTIONS
+	function onEachFeature_msc_info (feature, layer) {
+		layer.bindPopup('<b>Nazwa miejscowości</b>:<br>' + 					feature.properties.naz_glowna + '<br>' + 					'<b>Rodzaj miejscowości</b>:<br>' + 					feature.properties.rodzaj_ob)
+	};
+	
+	
+// POINT NEW-OLD
+	function style_msc_new_old (feature) {
+		switch(String(feature.properties['new-old'])) {
+			case 'new':
+				return {
+					radius: 4,
+					fillColor: "darkorange",
+					color: "#232323",
+					weight: 0.5,
+					opacity: 0.8,
+					fillOpacity: 1
+				}
+			case 'old':
+				return {
+					radius: 4,
+					fillColor: "royalblue",
+					color: "#232323",
+					weight: 0.5,
+					opacity: 0.8,
+					fillOpacity: 1
+				}
+		}
+	};
+	
+	var lyr_msc_new_old = L.geoJSON(msc_new_old, {
+		onEachFeature: onEachFeature_msc_info,
+		pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, style_msc_new_old(feature));
+		}
+	});
+	
+	
+// NET NEW-OLD
+	function style_net_new_old (feature) {
+		switch (String(feature.properties['new-old'])) {
+			case 'new':
+				return {
+					color: '#232323',
+					weight: 1,
+					opacity: 0.5,
+					fillColor: 'darkorange',
+					fillOpacity: 0.5,
+				}
+			case 'old':
+				return {
+					color: '#232323',
+					weight: 1,
+					opacity: 0.5,
+					fillColor: 'royalblue',
+					fillOpacity: 0.5,
+				}
+			case 'eql':
+				return {
+					color: '#232323',
+					weight: 1,
+					opacity: 0.5,
+					fillColor: 'limegreen',
+					fillOpacity: 0.5,
+				}
+		}
+	};
+	
+	function onEachFeature_net_new_old (feature, layer) {
+		layer.bindPopup('<b>Liczba miejscowości</b>:<br>' + 'Nowy/a/e: ' 				+ feature.properties.new + '<br>' +
+						'Stary/a/e: ' + feature.properties.old)
+	};
+	
+	var lyr_net_new_old = L.geoJSON(net_new_old, {
+		style: style_net_new_old,
+		onEachFeature: onEachFeature_net_new_old
+	}).addTo(map);
+	
+	
+// POINT BIG-LITTLE
+	function style_msc_bl_little (feature) {
+		switch(String(feature.properties['bl-little'])) {
+			case 'big':
+				return {
+					radius: 4,
+					fillColor: "darkorchid",
+					color: "#232323",
+					weight: 0.5,
+					opacity: 1,
+					fillOpacity: 1
+				}
+			case 'lar':
+				return {
+					radius: 4,
+					fillColor: "darkorchid",
+					color: "#232323",
+					weight: 0.5,
+					opacity: 1,
+					fillOpacity: 1
+				}
+			case 'lit':
+				return {
+					radius: 4,
+					fillColor: "lime",
+					color: "#232323",
+					weight: 0.5,
+					opacity: 1,
+					fillOpacity: 1
+				}
+		}
+	};
+	
+	var lyr_msc_bl_little = L.geoJSON(msc_bl_little, {
+		onEachFeature: onEachFeature_msc_info,
+		pointToLayer: function (feature, latlng) {
+			return L.circleMarker(latlng, style_msc_bl_little(feature));
+		}
+	})
+
+
+// NET BIG-LITTLE
+	function style_net_bl_little (feature) {
+		switch (String(feature.properties['bl-little'])) {
+			case 'bl':
+				return {
+					color: '#232323',
+					weight: 1,
+					opacity: 0.5,
+					fillColor: 'darkorchid',
+					fillOpacity: 0.5,
+				}
+			case 'lit':
+				return {
+					color: '#232323',
+					weight: 1,
+					opacity: 0.5,
+					fillColor: 'lime',
+					fillOpacity: 0.5,
+				}
+			case 'eql':
+				return {
+					color: '#232323',
+					weight: 1,
+					opacity: 0.5,
+					fillColor: 'bisque',
+					fillOpacity: 0.5,
+				}
+		}
+	};
+	
+	function onEachFeature_net_bl_little (feature, layer) {
+		layer.bindPopup('Duży/a/e: ' + feature.properties.big + '<br>' + 'Wielki/a/e :' + feature.properties.large + '<br>' + 'Małe: ' + feature.properties.little)
+	};
+	
+	var lyr_net_bl_little = L.geoJSON(net_bl_little, {
+		style: style_net_bl_little,
+		onEachFeature: onEachFeature_net_bl_little
+	});
+	
+	
+// BORDERS
+	var lyr_wojewodztwa = L.geoJSON(wojewodztwa, {
+		style: {color: "#444",
+				weight: 1.5,
+				fill: false}
+	});
+	
+	var lyr_polska = L.geoJSON(polska, {
+		style: {color: "#444",
+				weight: 1.5,
+				fill: false}
+	}).addTo(map);
+	
+	
+// GENERAL
+	var sclaebar = L.control.scale({maxWidth: 200, imperial: false}).addTo(map);
+	
+	var baseLayers = {
+		"OpenStreetMap": OSM,
+		"Carto Light": cartoLight
+	};
+	
+	var overlays = {
+		"granica kraju": lyr_polska,
+		"granice województw": lyr_wojewodztwa,
+		"miejscowości <span style='color:darkorange'>Nowe</span> / <span style='color:royalblue'>Stare</span>": lyr_msc_new_old,
+		"siatka <span style='color:darkorange'>Nowe</span> / <span style='color:royalblue'>Stare</span>": lyr_net_new_old,
+		"miejscowości <span style='color:darkorchid'>Duże, Wielkie</span> / <span style='color:limegreen'>Małe</span>": lyr_msc_bl_little,
+		"siatka <span style='color:darkorchid'>Duże, Wielkie</span> / <span style='color:limegreen'>Małe</span>": lyr_net_bl_little
+	};
+	
+	L.control.layers(baseLayers, overlays, {collapsed: false, position: 'topleft'}).addTo(map);
+	
+	var sidebar = L.control.sidebar('sidebar', {position:'right'}).addTo(map);
+
+</script>
+</body>
+</html>

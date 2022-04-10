@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); 
+
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: "Montserrat", sans-serif;
+}
+
+body {
+	height: 100vh; /*means the height of this element is equal to 100% of the viewport height*/
+	width: 100%;
+}
+
+hr {
+	width: 80%;
+	margin: auto;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 10%;
+}
+
+.logo {
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+}
+
+.logo:hover {
+	color: darkgreen;
+}
+
+.nav-bar li a {
+	transition: all 0.3s ease 0s;
+}
+
+.nav-bar li {
+	display: inline;
+	margin: 10px;
+}
+
+.nav-bar a {
+	text-decoration: none;
+	color: black;
+}
+
+.nav-bar a:hover {
+	color: darkgreen;
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.flex-container {
+	display: flex;
+	/*flex-direction: row;
+	flex-wrap: wrap;*/
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	margin: auto;
+}
+
+.flex-container a {
+	color: black;
+}
+
+.rectangle-main {
+	width: 40%;
+	height: 10vh;
+	margin: 1% auto;
+	border: 1px solid black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.rectangle-main:hover {
+	border: 2px solid black;
+}
+
+.rectangle-sub {
+	width: 40%;
+	height: 100px;
+	margin: 1% auto;
+	border: 1px dotted black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.rectangle-sub:hover {
+	border: 1px solid black;
+}
+
+.rectangle-sub p {
+	font-size: 12px;
+	text-align: center;
+	margin: 2% 1%;
+}
+
+.qa {
+	margin-bottom: 3%;
+}
+
+.show-answer {
+	background-color: white;
+	padding: 1px 5px;
+	border: 1px solid grey;
+}
+
+.show-answer:hover {
+	color: darkgreen;
+}
+
+.question {
+	text-decoration: underline;
+}
+
+.answer {
+	display: none;
+	font-family: 'Courier New', Courier, monospace;
+}
