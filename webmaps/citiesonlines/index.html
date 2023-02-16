@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Cities on Lines</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" href="./icons8-globe-16.png">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"/>
+        <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="plugins/leaflet-sidepanel.css" />
+        <script src="plugins/leaflet-sidepanel.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+        <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+        <script type="text/javascript" src="data/capital_yes.geojson"></script>
+        <script type="text/javascript" src="data/climate_general.js"></script>
+        <script type="text/javascript" src="data/climate_detailed.js"></script>
+
+        <script type="text/javascript" src="js/style.js"></script>
+
+        <style>
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+            #map {
+                width: 100%;
+                height: 100%;
+            }
+            .fa-solid {
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+    <div id='map'>
+        <div id="mapSidepanel" class="sidepanel" aria-label="side panel" aria-hidden="false">
+            <div class="sidepanel-inner-wrapper">
+                <nav class="sidepanel-tabs-wrapper" aria-label="sidepanel tab navigation">
+                    <ul class="sidepanel-tabs">
+                        <li class="sidepanel-tab">
+                            <a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="sidepanel-tab">
+                            <a href="#" class="sidebar-tab-link" role="tab" data-tab-link="tab-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-database" viewBox="0 0 16 16">
+                                    <path d="M4.318 2.687C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4c0-.374.356-.875 1.318-1.313ZM13 5.698V7c0 .374-.356.875-1.318 1.313C10.766 8.729 9.464 9 8 9s-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 5.698ZM14 4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13V4Zm-1 4.698V10c0 .374-.356.875-1.318 1.313C10.766 11.729 9.464 12 8 12s-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777A4.92 4.92 0 0 0 13 8.698Zm0 3V13c0 .374-.356.875-1.318 1.313C10.766 14.729 9.464 15 8 15s-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13s3.022-.289 4.096-.777c.324-.147.633-.323.904-.525Z"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="sidepanel-content-wrapper">
+                    <div class="sidepanel-content">
+                        <div class="sidepanel-tab-content" data-tab-content="tab-1">
+                            <h4>ABOUT WEBMAP</h4>
+                            <hr>
+                            <p>
+                                Have you ever wondered what city is located at the same latitude as yours?
+                                <br><br>
+                                Have you ever been curious if the Warsaw is located "higher" or "lower" than London 
+                                or surprised that Madrid and New York, with different climates,
+                                are about the same latitude?
+                                <br><br>
+                                The main purpose of this map was* to compare locations of cities around the world.
+                                But as cities placed about the same latitude can have completely different climate,
+                                the layer with climates zones was added.
+                                <br>
+                                <p style="font-size:10px">*was to have fun while learning Leaflet :)</p>
+                            </p>
+                            <br>
+                            <h4>HOW TO USE IT</h4>
+                            <hr>
+                            <p>
+                                Click on the circle representing the citiy and create a horizontal line.
+                                Move around the map to compare location with other cities.
+                                Check or uncheck layers you want to be visible.
+                                You can clear lines layer using erase button on the top left.
+                            </p>
+                        </div>
+                        <div class="sidepanel-tab-content" data-tab-content="tab-2">
+                            <h4>DATA SOURCES</h4>
+                            <hr>
+                            <p>
+                                Locations of capital cities were obtained via QuickOSM QGIS plugin using key=capital and value=yes.
+                            </p>
+                            <p>
+                                Climates zones are based on the Köppen-Geiger climate classification.
+                                <br>Climate data were downloaded from <a href="https://datacatalog.worldbank.org/search/dataset/0042325" target="_blank">The World Bank Data Catalog</a>.
+                                <br>Climates names and colors are based on the <a href="https://en.wikipedia.org/wiki/K%C3%B6ppen_climate_classification#Dfa/Dwa/Dsa:_Hot_summer_continental_climates" target="_blank">wiki article</a>
+                            and <a href="http://koeppen-geiger.vu-wien.ac.at/pics/map.jpg" target="_blank">climate map image</a>
+                            from <a href="http://koeppen-geiger.vu-wien.ac.at/" target="_blank">http://koeppen-geiger.vu-wien.ac.at/</a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidepanel-toggle-container">
+                <button class="sidepanel-toggle-button" type="button" aria-label="toggle side panel"></button>
+            </div>
+        </div>
+    </div> <!--close map div-->
+        <script>
+            var map = L.map('map', {
+                center: [51.5, 20.5],
+                zoom: 4,
+                minZoom: 2,
+                maxBounds: L.latLngBounds([90, -180], [-90, 180])
+            });
+
+            var lyrOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | marylaGIS'
+            }).addTo(map);
+
+            var lyrOSMtopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+            });
+
+            var lyrEsriImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            });
+
+
+            function popup_climate_general(feature, layer) {
+                var popupContent = feature.properties['CLASS1FULL'];
+                layer.bindPopup(popupContent);
+            };
+
+            map.createPane('climateGeneralPane');
+            map.getPane('climateGeneralPane').style.zIndex = 250;
+
+            var climateGeneralLayer = L.geoJSON(climate_general, {
+                style: style_climate_general,
+                fillOpacity: 0.4,
+				weight: 1,
+                onEachFeature: popup_climate_general,
+                pane: 'climateGeneralPane'
+            });
+
+            map.createPane('climateDetailedPane');
+            map.getPane('climateDetailedPane').style.zIndex = 250;
+
+            var climateDetailedLayer = L.geoJSON(climate_detailed, {
+                style: style_climate_detailed,
+                fillOpacity: 0.5,
+				weight: 1,
+                pane: 'climateDetailedPane'
+            }).bindPopup(function (layer) {
+                return layer.feature.properties['CLASS2FULL'] + 
+                    ' (' + layer.feature.properties['CLASS2ABBR'] + ')';
+                }, {maxWidth: 100}
+            );
+
+
+            var linesFeatures = L.featureGroup();
+
+            function style_lines() {
+                return {color: "red"}
+            };
+
+            function highlightFeature(e) {
+                var layer = e.target;
+                layer.setStyle({
+                    color: 'red'
+                });
+            };
+            function resetHighlight(e) {
+                var layer = e.target;
+                layer.setStyle(layer.defaultStyle);
+            };
+
+            map.createPane('pointsPane');
+            map.getPane('pointsPane').style.zIndex = 700;
+
+            var pointsLayer = L.geoJSON(cities, {
+                pane: 'pointsPane',
+                pointToLayer: (feature, latlng) => {
+                    var popupDiv = document.createElement("div");
+                    popupDiv.innerHTML = `<h4 style="text-align:center;margin-bottom:1px">
+                        ${feature.properties["name:en"]}</h4>`;
+
+                    var btnLine = document.createElement("button");
+                    btnLine.innerHTML = "create line";
+
+                    btnLine.onclick = function() {
+                        var lineStyle = {color: 'black'}
+                        var line = L.polyline(
+                                [[latlng.lat, -360], [latlng.lat, 360]],
+                                lineStyle).bindPopup(feature.properties["name:en"], 
+                                {autoClose: false, closePopupOnClick: false});
+                            line.defaultStyle = lineStyle;
+                            line.on({
+                                mouseover: highlightFeature,
+                                mouseout: resetHighlight
+                            })
+                            linesFeatures.addLayer(line);
+                    };
+
+                    popupDiv.appendChild(btnLine);
+
+                    return L.circleMarker(latlng, 
+                        style_cities(feature)).bindPopup(popupDiv);
+                }
+            });
+
+            linesFeatures.addTo(map);
+			pointsLayer.addTo(map);
+
+            var eraseBtn = L.easyButton('fa-solid fa-eraser', function(){
+                linesFeatures.clearLayers(); 
+            }).addTo(map);
+
+
+            var baseLayers = {
+                "OpenStreetMap": lyrOSM,
+                "OpenTopoMap": lyrOSMtopo,
+                "ESRI World Imagery": lyrEsriImagery
+            };
+
+            var overlays = {
+                "cities": pointsLayer,
+                "lines": linesFeatures,
+                "climate - general": climateGeneralLayer,
+                "climate - detailed": climateDetailedLayer
+            };
+
+            L.control.layers(baseLayers, overlays, {collapsed: false}).addTo(map);
+
+            L.control.scale({
+                maxWidth: 200
+            }).addTo(map);
+
+            var sidepanelLeft = L.control.sidepanel('mapSidepanel', {
+                tabsPosition: 'left',
+                startTab: 'tab-1',
+                pushControls: true
+            }).addTo(map);
+
+            $(function() {
+                $("#includedContent").load("side_panel.html"); 
+            });
+        </script>
+    </body>
+</html>
