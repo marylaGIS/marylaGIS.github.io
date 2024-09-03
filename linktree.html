@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="marylaGIS">
+	<meta name="description" content="marylaGIS portfolio">
+	<title>marylaGIS</title>
+	
+	<link rel="stylesheet" href="css/style.css">
+	
+	<style>
+		#website:hover {
+			color: gray;
+		}
+		#linkedin:hover {
+			color: dodgerblue;
+		}
+		#github:hover {
+			color: darkviolet;
+		}
+		#youtube:hover {
+			color: red;
+		}
+		a:hover {
+			font-weight: bold
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="links-container">
+		<p style="font-size:20px">
+			<span style="color:red">maryla4</span><span style="color:green">GIS</span>
+		</p>
+		<div class="rectangle-main">
+			<a id="website" href="https://marylagis.github.io/" style="">website</a>
+		</div>
+		<div class="rectangle-main">
+		<a id="linkedin" href="https://www.linkedin.com/in/marylajez/">linkedin</a>
+		</div>
+		<div class="rectangle-main">
+		<a id="github" href="https://github.com/marylaGIS">github</a>
+		</div>
+		<div class="rectangle-main">
+		<a id="youtube" href="https://www.youtube.com/@maryla4GIS">youtube</a>
+		</div>
+	</div>
+	
+	<footer style="margin-bottom:1%">
+		<p>&copy; marylaGIS 2022 - <span id="demo"><span></p>
+		
+	</footer>
+	
+<script>
+	const d = new Date();
+	let year = d.getFullYear();
+	document.getElementById("demo").innerHTML = year;
+</script>
+
+</body>
+</html>
