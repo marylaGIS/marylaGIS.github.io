@@ -1,10 +1,10 @@
-const questionDivs = document.querySelectorAll(".qa");
+const questionDivs = document.querySelectorAll(".tut");
 
 for (let el of questionDivs) {
     const btn = el.querySelector("button");
-    const answer = el.querySelector(".answer");
+    const content = el.querySelector(".content");
 
     btn.addEventListener("click", function() {
-        answer.classList.toggle("answer")
+        content.classList.toggle("content")
     })
 }

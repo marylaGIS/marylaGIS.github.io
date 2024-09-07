@@ -29,48 +29,48 @@
 	<hr><br>
 
 	<div class="flex-container">
-		<strong>pyQGIS snippets / cheat sheet</strong>
+		<strong>YouTube tutorials</strong>
 	</div>
 	<br>
 
 	<div class="flex-container">
-		<div class="qa">
-			<div class="question">
-				How to print out layer fields names?
-				<button class="show-answer">>>></button>
+		<div class="tut">
+			<div class="title">
+				Jak wczytać warstwę wektorową?
+				<button class="show"> > </button>
 			</div>
-			<div class="answer">
-				layer = iface.activeLayer()<br>
-				for field in layer.fields():<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;print(field.name())
+			<div class="content">
+				<iframe
+					src="https://www.youtube.com/embed/7qFXXXcfpyY">
+				</iframe>
+			</div>
+		</div>
+	</div>
+	
+	<div class="flex-container">
+		<div class="tut">
+			<div class="title">
+				Jak odczytać pola warstwy i ich wartości?
+				<button class="show"> > </button>
+			</div>
+			<div class="content">
+				<iframe
+					src="https://www.youtube.com/embed/Uw_lpq9cOO0">
+				</iframe>
 			</div>
 		</div>
 	</div>
 
 	<div class="flex-container">
-		<div class="qa">
-			<div class="question">
-				How to print out given field's values?
-				<button class="show-answer">>>></button>
+		<div class="tut">
+			<div class="title">
+				Jak odczytać warstwy w projekcie?
+				<button class="show"> > </button>
 			</div>
-			<div class="answer">
-				layer = iface.activeLayer()<br>
-				for feature in layer.getFeatures():<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;print(feature['&lt;field_name&gt;'])
-			</div>
-		</div>
-	</div>
-
-	<div class="flex-container">
-		<div class="qa">
-			<div class="question">
-				How to create layer from selected features?
-				<button class="show-answer">>>></button>
-			</div>
-			<div class="answer">
-				layer = iface.activeLayer()<br>
-				selection_layer = layer.materialize(QgsFeatureRequest().setFilterFids(layer.selectedFeatureIds()))<br>
-				QgsProject.instance().addMapLayer(selection_layer)
+			<div class="content">
+				<iframe width="60px" height="80px"
+					src="https://www.youtube.com/embed/e--j1r2zq1A">
+				</iframe>
 			</div>
 		</div>
 	</div>
