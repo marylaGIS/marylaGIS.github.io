@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); 
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+}
+
+hr {
+  width: 80%;
+  margin: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10%;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.logo:hover {
+  transform: scale(1.01);
+}
+
+.logo-red {
+  color: red
+}
+
+.logo-green {
+  color: rgb(88, 150, 50)
+}
+
+.img-link:hover {
+  transform: scale(1.05);
+}
+
+#lang-btn {
+  width: 40px;
+  background-color: white;
+  border: 1px solid;
+  padding: 2px 5px;
+  cursor: pointer
+}
+
+#lang-btn:hover {
+  font-weight: bold;
+  border: 2px solid;
+}
+
+.en {
+  display: block;
+}
+
+.pl {
+  display: none;
+}
+
+#drop-btn {
+  width: 40px;
+  background-color: white;
+  border: 1px solid;
+  padding: 2px 5px;
+  cursor: pointer
+}
+
+#drop-btn:hover, #drop-btn:focus {
+  font-weight: bold;
+  border: 2px solid;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown a:hover {
+  font-weight: bold;
+}
+
+.dropdown-content {
+  border: 1px solid;
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  overflow: auto;
+  z-index: 1;
+  right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 5% 5%;
+  text-decoration: none;
+  display: block;
+}
+
+.show {
+  display: block;
+}
+
+footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: white;
+   text-align: center;
+   padding: 1%;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+.flex-container a {
+  color: black;
+  text-decoration: none;
+}
+
+.flex-container a:hover {
+  font-weight: bold;
+}
+
+.flex-item-main {
+  width: 40%;
+  height: 15vh;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2%;
+  margin: 1%;
+  overflow: hidden;
+}
+
+.flex-item-main:hover {
+  border: 2px solid black;
+}
+
+.flex-item-sub {
+  width: 40%;
+  /* height: 15vh; */
+  border: 1px dotted black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2%;
+  margin: 1%;
+  text-align: center;
+}
+
+.flex-item-sub:hover {
+  border: 1px solid black;
+}
+
+.flex-item-sub img {
+  height: 32px;
+}
+
+.flex-item-sub a {
+  font-size: 22px;
+}
+
+.flex-item-sub a:hover {
+  cursor: pointer;
+}
+
+.flex-item-sub div {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width: 480px) {
+  .flex-container {
+    flex-direction: column;
+  }
+
+  .flex-item-main{
+    width: 100%;
+  }
+  
+  .flex-item-sub{
+    width: 100%;
+  }
+}
+
+.fa-q:hover {
+  color: green;
+}
+
+.fa-github:hover {
+  color: purple;
+}

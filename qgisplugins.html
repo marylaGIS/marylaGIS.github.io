@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="marylaGIS">
+  <meta name="description" content="marylaGIS portfolio">
+  <title>qgisplugins — marylaGIS</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="js/app.js"></script>
+</head>
+<body>
+  <header>
+  <a href="index.html" class="logo">
+	<span class="logo-red">maryla</span><span class="logo-green">GIS</span>
+  </a>
+  <nav>
+	<button onclick="switchLang()" id="lang-btn">PL</button>
+	<div class="dropdown">
+	  <button onclick="showDropMenu()" id="drop-btn">=</button>
+	  <div id="dropdown-menu" class="dropdown-content">
+	    <a href="qgisplugins.html">QGIS plugins</a>
+	    <a href="contact.html">contact</a>
+	  </div>
+	</div>
+  </nav>
+  </header>
+  
+  <hr><br>
+  
+  <div class="flex-container">
+    <div class="flex-item-sub">
+	  <img src="https://raw.githubusercontent.com/marylaGIS/bdot10k/refs/heads/main/icon.png">
+	  <p>&nbsp;</p>
+	  <p><strong>BDOT10k</strong></p>
+	  <p>&nbsp;</p>
+	  <p class="en">A plugin for downloading Topographic Objects Database (BDOT10k).</p>
+	  <p class="pl">Wtyczka do pobierania danych BDOT10k (Baza Danych Obiektów Topograficznych).</p>
+	  <p>&nbsp;</p>
+	  <div>
+	    <a class="en" href="https://plugins.qgis.org/plugins/bdot10k/" target="_blank"><i class="fa-solid fa-q img-link" title="View on QGIS Plugins website"></i></a>
+	    <a class="pl" href="https://plugins.qgis.org/plugins/bdot10k/" target="_blank"><i class="fa-solid fa-q img-link" title="Zobacz na stronie wtyczek QGISa"></i></a>
+	    <a class="en" href="https://github.com/marylaGIS/bdot10k" target="_blank"><i class="fa-brands fa-github img-link" title="View on GitHub"></i></a>
+	    <a class="pl" href="https://github.com/marylaGIS/bdot10k" target="_blank"><i class="fa-brands fa-github img-link" title="Zobacz na GitHubie"></i></a>
+	  </div>
+	</div>
+    <div class="flex-item-sub">
+	  <img src="https://raw.githubusercontent.com/marylaGIS/warszawa_gis/refs/heads/main/img/waw.svg">
+	  <p>&nbsp;</p>
+	  <p><strong>Warszawa GIS</strong></p>
+	  <p>&nbsp;</p>
+	  <p class="en">A plugin that provides access to various spatial data published by the Capital City of Warsaw.</p>
+	  <p class="pl">Wtyczka zawierająca dostęp do różnego rodzaju danych przestrzennych publikowanych przez m.st. Warszawę.</p>
+	  <p>&nbsp;</p>	  
+	  <div>
+	    <a class="en" href="https://plugins.qgis.org/plugins/warszawa_gis/" target="_blank"><i class="fa-solid fa-q img-link" title="View on QGIS Plugins website"></i></a>
+	    <a class="pl" href="https://plugins.qgis.org/plugins/warszawa_gis/" target="_blank"><i class="fa-solid fa-q img-link" title="Zobacz na stronie wtyczek QGISa"></i></a>
+	    <a class="en" href="https://github.com/marylaGIS/warszawa_gis" target="_blank"><i class="fa-brands fa-github img-link" title="View on GitHub"></i></a>
+	    <a class="pl" href="https://github.com/marylaGIS/warszawa_gis" target="_blank"><i class="fa-brands fa-github img-link" title="Zobacz na GitHubie"></i></a>
+	  </div>
+	</div>
+  </div>
+
+  <br><br>
+
+  <footer>
+    <p>&copy; 2022 &ndash; <span id="current-year"></span></p>
+  </footer>
+
+</body>
+</html>
